@@ -1,0 +1,81 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request 
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-lates
+    name: SpellBook
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+
+    # Runs a single command using the runners shell
+    - name: Run a one-line script
+      run: echo Hello, world!
+
+    # Runs a set of commands using the runners shell
+    - name: Run a multi-line script
+      run: |
+        echo Add other actions to build,
+        echo test, and deploy your project.
+        
+        - name: Cache
+  uses: actions/cache@v1.1.2
+  with:
+    # A directory to store and save the cache
+    path: 
+    # An explicit key for restoring and saving the cache
+    key: 
+    # An ordered list of keys to use for restoring the cache if no cache hit occurred for key
+    restore-keys: # optional
+
+- name: Setup Node.js for use with actions
+  uses: actions/setup-node@v1.1.0
+  with:
+    # Version Spec of the version to use.  Examples: 10.x, 10.15.1, >=10.15.0, lts
+    version: # optional, default is 10.x
+    # Optional registry to set up for auth. Will set the registry in a project level .npmrc and .yarnrc file, and set up auth to read in from env.NODE_AUTH_TOKEN
+    registry-url: # optional
+    # Optional scope for authenticating against scoped registries
+    scope: # optional
+    - name: Upload artifact
+  uses: actions/upload-artifact@v1.0.0
+  with:
+    # Artifact name
+    name: 
+    # Directory containing files to upload
+    path: 
+    
+    - name: Setup Go for use with actions
+  uses: actions/setup-go@v1.0.0
+  with:
+    # The Go version to download (if necessary) and use. Example: 1.9.3
+    version: # optional, default is 1.10
+    
+    - name: Setup .NET Core SDK
+  uses: actions/setup-dotnet@v1.4.0
+  with:
+    # SDK version to use. Example: 2.2.104
+    dotnet-version: # optional
+    # Optional package source for which to set up authentication. Will consult any existing NuGet.config in the root of the repo and provide a temporary NuGet.config using the NUGET_AUTH_TOKEN environment variable as a ClearTextPassword
+    source-url: # optional
+    # Optional OWNER for using packages from GitHub Package Registry organizations/users other than the current repository's owner. Only used if a GPR URL is also provided in source-url
+    owner: # optional
+    # Optional NuGet.config location, if your NuGet.config isn't located in the root of the repo.
+    config-file: # optional
+    # Deprecated. Use dotnet-version instead. Will not be supported after October 1, 2019
+    version: # optional
